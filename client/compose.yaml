@@ -1,1 +1,8 @@
+version: '3'
 services:
+  client:
+    build: ./client
+    volumes:
+      - ./client:/app
+    ports:
+      - 8081:8081
