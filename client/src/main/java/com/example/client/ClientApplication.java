@@ -5,8 +5,19 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
 public class ClientApplication {
-    private int a,b;
     public static void main(String[] args) {
-        SpringApplication.run(ClientApplication.class, args);
+        ClientComponent client = new ClientComponent();
+
+        switch (args[0]) {
+            case "get":
+                System.out.println(client.get(args[1]));
+                break;
+            case "set":
+                client.set(args[1], args[2]);
+                break;
+            default:
+                System.out.println("Invalid command");
+        }
+
     }
 }
