@@ -3,6 +3,8 @@ package com.example.client;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.client.ResourceAccessException;
+import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 public class ClientComponent {
@@ -15,14 +17,14 @@ public class ClientComponent {
     }
 
     public void set(String key, String value) {
-        RestTemplate restTemplate = new RestTemplate();
-        HttpEntity<String> request = new HttpEntity<>(value);
-        restTemplate.exchange(SERVICE_URL + key, HttpMethod.PUT, request, Void.class);
-    }
-
-    public static void main(String[] args) {
-        ClientComponent client = new ClientComponent();
-        client.set("test", "value");
-        System.out.println(client.get("test"));
+        try {
+            RestTemplate restTemplate = new RestTemplate();
+            HttpEntity<String> request = new HttpEntity<>(value);
+            ResponseEntity<String> response = restTemplate.exchange(SERVICE_URL + key, HttpMethod.PUT, request, String.class);
+        } catch (ResourceAccessException e) {
+            System.err.println("Failed to connect to the server: " + e.getMessage());
+        } catch (RestClientException e) {
+            System.err.println("HTTP request failed: " + e.getMessage());
+        }
     }
 }

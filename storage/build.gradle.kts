@@ -29,6 +29,8 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok")
     implementation ("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
+    implementation ("jakarta.persistence:jakarta.persistence-api:2.2.3")
 }
 
 tasks.withType<Test> {
