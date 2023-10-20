@@ -1,14 +1,18 @@
 package com.example.client;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.ResourceAccessException;
 import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
+@Service
+@RequiredArgsConstructor
 public class ClientComponent {
-    private static final String SERVICE_URL = "http://localhost:8080/keys/";
+    private static final String SERVICE_URL = "http://storage:8090/";
 
     public String get(String key) {
         RestTemplate restTemplate = new RestTemplate();

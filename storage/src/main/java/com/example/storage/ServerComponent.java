@@ -1,17 +1,13 @@
 package com.example.storage;
 
 import com.example.storage.Entities.KeyData;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class ServerComponent{
     private final KeyRepository keyRepository;
-
-    @Autowired
-    public ServerComponent(KeyRepository keyRepository) {
-        this.keyRepository = keyRepository;
-    }
 
     public String get(String key) {
         return keyRepository.getReferenceById(key).getValue();

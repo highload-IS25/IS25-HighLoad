@@ -1,0 +1,35 @@
+name: lab1_service
+services:
+  database:
+    container_name: info
+    image: postgres:14
+    environment:
+      POSTGRES_DB: "info"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "297811"
+    ports:
+      - "5432:5432"
+    networks:
+      - lublumamu
+  storage:
+    container_name: storage
+    build:
+      context: ./storage
+      dockerfile: Dockerfile
+    ports:
+      - 8090:8090
+    networks:
+      - lublumamu
+  client:
+    container_name: client
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    command: get 1
+    ports:
+      - 8091:8091
+    networks:
+      - lublumamu
+networks:
+  lublumamu:
+    driver: bridge

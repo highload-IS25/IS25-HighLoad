@@ -6,15 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/keys")
 public class StorageController {
     private final ServerComponent storage;
-
     @Autowired
-    public StorageController(ServerComponent storage){
-        this.storage = storage;
-    }
-
+    public StorageController(ServerComponent serverComponent) {this.storage = serverComponent;}
     @GetMapping("/{key}")
     public ResponseEntity<String> getValue(@PathVariable String key) {
         String value = storage.get(key);
