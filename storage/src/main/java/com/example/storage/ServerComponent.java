@@ -1,25 +1,24 @@
 package com.example.storage;
 
+import com.example.storage.Entities.KeyData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ServerComponent implements StorageInterface {
-    private final StorageInterface storageInterface;
+public class ServerComponent{
+    private final KeyRepository keyRepository;
 
     @Autowired
-    public ServerComponent(StorageInterface storageInterface) {
-        this.storageInterface = storageInterface;
+    public ServerComponent(KeyRepository keyRepository) {
+        this.keyRepository = keyRepository;
     }
 
-    @Override
     public String get(String key) {
-        return storageInterface.get(key);
+        return keyRepository.getReferenceById(key).getValue();
     }
 
-    @Override
     public void set(String key, String value) {
-        storageInterface.set(key, value);
+        keyRepository.save(new KeyData(key, value));
     }
 }
 

@@ -1,11 +1,12 @@
 package com.example.storage.Entities;
 
-import jakarta.persistence.*;
+import org.springframework.boot.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-
-
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor

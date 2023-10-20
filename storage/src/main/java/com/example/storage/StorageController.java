@@ -1,16 +1,19 @@
 package com.example.storage;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.HashMap;
-import java.util.Map;
-
 @RestController
 @RequestMapping("/keys")
 public class StorageController {
-    private Map<String, String> storage = new HashMap<>();
+    private final ServerComponent storage;
+
+    @Autowired
+    public StorageController(ServerComponent storage){
+        this.storage = storage;
+    }
 
     @GetMapping("/{key}")
     public ResponseEntity<String> getValue(@PathVariable String key) {
@@ -24,7 +27,7 @@ public class StorageController {
 
     @PutMapping("/{key}")
     public ResponseEntity<Void> putValue(@PathVariable String key, @RequestBody String value) {
-        storage.put(key, value);
+        storage.set(key, value);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 }
