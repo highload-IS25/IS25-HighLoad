@@ -1,15 +1,25 @@
 package com.example.storage;
 
-public class ServerComponent {
-    private final StorageService storageInterface;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-    public ServerComponent(StorageService storageInterface) {
+@Service
+public class ServerComponent implements StorageInterface {
+    private final StorageInterface storageInterface;
+
+    @Autowired
+    public ServerComponent(StorageInterface storageInterface) {
         this.storageInterface = storageInterface;
     }
 
-    public void serve() {
-        // Реализация HTTP сервера
-        // Обработка GET /keys/${key} и PUT /keys/${key}?value=${value} запросов
+    @Override
+    public String get(String key) {
+        return storageInterface.get(key);
+    }
+
+    @Override
+    public void set(String key, String value) {
+        storageInterface.set(key, value);
     }
 }
 
