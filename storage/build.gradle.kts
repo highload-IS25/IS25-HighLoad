@@ -31,6 +31,7 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation ("jakarta.persistence:jakarta.persistence-api:2.2.3")
+    implementation("org.postgresql:postgresql:42.6.0")
 }
 
 tasks.withType<Test> {
