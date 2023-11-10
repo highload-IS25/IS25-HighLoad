@@ -21,6 +21,8 @@ repositories {
 }
 
 dependencies {
+    implementation("org.springframework:spring-jms:5.3.10")
+    implementation("org.apache.activemq:activemq-core:5.4.2")
     implementation("org.springframework.boot:spring-boot-starter")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     compileOnly("org.projectlombok:lombok")
