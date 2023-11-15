@@ -1,20 +1,30 @@
 package com.example.storage;
 
-import com.example.storage.Entities.KeyData;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-@Service
-@RequiredArgsConstructor
-public class ServerComponent{
-    private final KeyRepository keyRepository;
+import org.iq80.leveldb.*;
+import static org.iq80.leveldb.impl.Iq80DBFactory.*;
+import java.io.*;
 
-    public String get(String key) {
-        return keyRepository.getReferenceById(key).getValue();
+@Service
+public class ServerComponent {
+    private DB db;
+    public ServerComponent() throws IOException {
+        Options options = new Options();
+        options.createIfMissing(true);
+        db = factory.open(new File("file/alo.db"), options);
     }
 
-    public void set(String key, String value) {
-        keyRepository.save(new KeyData(key, value));
+    public String get(String key){
+        return asString(db.get(bytes(key)));
+    }
+
+    public void set(String key, String value){
+        db.put(bytes(key), bytes(value));
+    }
+
+    public void close() throws IOException {
+        db.close();
     }
 }
-

@@ -22,19 +22,12 @@ repositories {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     compileOnly("org.projectlombok:lombok")
-    developmentOnly("org.springframework.boot:spring-boot-devtools")
-    developmentOnly("org.springframework.boot:spring-boot-docker-compose")
     annotationProcessor("org.projectlombok:lombok")
     implementation ("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
-    implementation ("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation ("jakarta.persistence:jakarta.persistence-api:3.1.0")
-    implementation("org.postgresql:postgresql:42.6.0")
-    implementation("jakarta.annotation:jakarta.annotation-api:2.1.1")
     implementation("javax.xml.bind:jaxb-api:2.3.0")
-    implementation("org.springframework.boot:spring-boot-starter-data-jpa:3.1.1")
+    implementation("org.iq80.leveldb:leveldb:0.7")
 }
 
 tasks.withType<Test> {
