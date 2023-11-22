@@ -1,16 +1,5 @@
 name: lab1_service
 services:
-  database:
-    container_name: info
-    image: postgres:14
-    environment:
-      POSTGRES_DB: "info"
-      POSTGRES_USER: "postgres"
-      POSTGRES_PASSWORD: "297811"
-    ports:
-      - "5432:5432"
-    networks:
-      - lublumamu
   storage:
     container_name: storage
     build:

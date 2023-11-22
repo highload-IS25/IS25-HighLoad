@@ -12,7 +12,7 @@ import org.springframework.web.client.RestTemplate;
 @Service
 @RequiredArgsConstructor
 public class ClientComponent {
-    private static final String SERVICE_URL = "http://storage:8090/";
+    private static final String SERVICE_URL = "http://localhost:8090/";
 
     public String get(String key) {
         RestTemplate restTemplate = new RestTemplate();

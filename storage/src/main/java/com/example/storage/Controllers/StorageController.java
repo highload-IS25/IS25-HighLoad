@@ -1,5 +1,6 @@
-package com.example.storage;
+package com.example.storage.Controllers;
 
+import com.example.storage.Entities.ServerComponent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

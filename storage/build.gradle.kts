@@ -27,7 +27,7 @@ dependencies {
     implementation ("org.springframework.boot:spring-boot-starter-web")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("javax.xml.bind:jaxb-api:2.3.0")
-    implementation("org.iq80.leveldb:leveldb:0.7")
+    implementation("org.iq80.leveldb:leveldb:0.12")
 }
 
 tasks.withType<Test> {

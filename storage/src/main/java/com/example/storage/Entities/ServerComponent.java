@@ -1,4 +1,4 @@
-package com.example.storage;
+package com.example.storage.Entities;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
