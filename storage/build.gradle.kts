@@ -28,6 +28,8 @@ dependencies {
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     implementation("javax.xml.bind:jaxb-api:2.3.0")
     implementation("org.iq80.leveldb:leveldb:0.12")
+    implementation("org.springframework.boot:spring-boot-starter-data-redis:3.1.5")
+    implementation("redis.clients:jedis:5.0.2")
 }
 
 tasks.withType<Test> {

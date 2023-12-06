@@ -19,6 +19,43 @@ services:
       - 8091:8091
     networks:
       - lublumamu
+  redis-master:
+    container_name: redis-master
+    image: redis
+    networks:
+      lublumamu:
+        ipv4_address: 172.28.1.4
+    ports:
+      - 6380:6380
+    volumes:
+      - ./conf:/app
+    command: redis-server /app/redis-master.conf
+  redis-replica-0:
+    container_name: redis-replica-0
+    image: redis
+    networks:
+      lublumamu:
+        ipv4_address: 172.28.1.5
+    ports:
+      - 6381:6381
+    volumes:
+      - ./conf:/app
+    command: redis-server /app/redis-replica-0.conf
+  redis-replica-1:
+    container_name: redis-replica-1
+    image: redis
+    networks:
+      lublumamu:
+        ipv4_address: 172.28.1.6
+    ports:
+      - 6382:6382
+    volumes:
+      - ./conf:/app
+    command: redis-server /app/redis-replica-1.conf
 networks:
   lublumamu:
     driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.1.0/16
+          gateway: 172.28.1.1
