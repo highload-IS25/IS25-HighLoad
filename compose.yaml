@@ -1,0 +1,90 @@
+services:
+  redis-master-a:
+    container_name: redis-master-a
+    image: redis
+    networks:
+      lublupapu:
+        ipv4_address: 172.28.10.10
+    ports:
+      - 6999:6999
+    volumes:
+      - ./conf2:/app
+    command: redis-server /app/redis-master-a.conf
+  redis-replica-a:
+    container_name: redis-replica-a
+    image: redis
+    networks:
+      lublupapu:
+        ipv4_address: 172.28.10.13
+    ports:
+      - 7003:7003
+    volumes:
+      - ./conf2:/app
+    command: redis-server /app/redis-replica-a.conf
+  redis-master-b:
+    container_name: redis-master-b
+    image: redis
+    networks:
+      lublupapu:
+        ipv4_address: 172.28.10.11
+    ports:
+      - 7001:7001
+    volumes:
+      - ./conf2:/app
+    command: redis-server /app/redis-master-b.conf
+  redis-replica-b:
+    container_name: redis-replica-b
+    image: redis
+    networks:
+      lublupapu:
+        ipv4_address: 172.28.10.14
+    ports:
+      - 7004:7004
+    volumes:
+      - ./conf2:/app
+    command: redis-server /app/redis-replica-b.conf
+  redis-master-c:
+    container_name: redis-master-c
+    image: redis
+    networks:
+      lublupapu:
+        ipv4_address: 172.28.10.12
+    ports:
+      - 7002:7002
+    volumes:
+      - ./conf2:/app
+    command: redis-server /app/redis-master-c.conf
+  redis-replica-c:
+    container_name: redis-replica-c
+    image: redis
+    networks:
+      lublupapu:
+        ipv4_address: 172.28.10.15
+    ports:
+      - 7005:7005
+    volumes:
+      - ./conf2:/app
+    command: redis-server /app/redis-replica-c.conf
+  redis-cluster:
+    image: redis
+    container_name: redis-cluster
+    networks:
+      - lublupapu
+    volumes:
+      - ./conf2:/app
+    command: /bin/bash /app/cluster.sh
+    depends_on:
+      - redis-master-a
+      - redis-master-b
+      - redis-master-c
+      - redis-replica-a
+      - redis-replica-b
+      - redis-replica-c
+networks:
+  lublupapu:
+    driver: bridge
+    name: lublupapu
+    ipam:
+      config:
+        - subnet: 172.28.10.0/16
+          gateway: 172.28.10.1

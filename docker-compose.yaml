@@ -9,12 +9,15 @@ services:
       - 8090:8090
     networks:
       - lublumamu
+      - lublupapu
+    environment:
+      SPRING_PROFILES_ACTIVE: cluster
   client:
     container_name: client
     build:
       context: ./client
       dockerfile: Dockerfile
-    command: get 1
+    command: get 56
     ports:
       - 8091:8091
     networks:
@@ -24,7 +27,7 @@ services:
     image: redis
     networks:
       lublumamu:
-        ipv4_address: 172.28.1.4
+        ipv4_address: 172.29.1.4
     ports:
       - 6380:6380
     volumes:
@@ -35,7 +38,7 @@ services:
     image: redis
     networks:
       lublumamu:
-        ipv4_address: 172.28.1.5
+        ipv4_address: 172.29.1.5
     ports:
       - 6381:6381
     volumes:
@@ -46,7 +49,7 @@ services:
     image: redis
     networks:
       lublumamu:
-        ipv4_address: 172.28.1.6
+        ipv4_address: 172.29.1.6
     ports:
       - 6382:6382
     volumes:
@@ -57,5 +60,7 @@ networks:
     driver: bridge
     ipam:
       config:
-        - subnet: 172.28.1.0/16
-          gateway: 172.28.1.1
+        - subnet: 172.29.1.0/16
+          gateway: 172.29.1.1
+  lublupapu:
+    name: lublupapu

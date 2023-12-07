@@ -1,16 +1,17 @@
-package com.example.storage.Entities;
+package com.example.storage.services;
 
-import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
+import org.springframework.context.annotation.Profile;
+import org.springframework.stereotype.Component;
 
 import org.iq80.leveldb.*;
 import static org.iq80.leveldb.impl.Iq80DBFactory.*;
 import java.io.*;
 
-@Service
-public class ServerComponent {
+@Component
+@Profile("leveldb")
+public class LevelDbImpl implements ServerComponent {
     private DB db;
-    public ServerComponent() throws IOException {
+    public LevelDbImpl() throws IOException {
         Options options = new Options();
         options.createIfMissing(true);
         db = factory.open(new File("file/alo.db"), options);
@@ -22,9 +23,5 @@ public class ServerComponent {
 
     public void set(String key, String value){
         db.put(bytes(key), bytes(value));
-    }
-
-    public void close() throws IOException {
-        db.close();
     }
 }
