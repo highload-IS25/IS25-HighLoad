@@ -1,0 +1,13 @@
+proxy:
+  sharding:
+    sections:
+      - name: redis-0
+        master: 172.28.1.10
+        replicas:
+          - 172.28.1.11
+          - 172.28.1.12
+      - name: redis-1
+        master: 172.28.1.20
+        replicas:
+          - 172.28.1.21
+          - 172.28.1.22
